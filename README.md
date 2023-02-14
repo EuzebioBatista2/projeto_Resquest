@@ -3,8 +3,14 @@ Projeto com o intuito de realizar algumas requisições através de uma página 
 
 Passos para utilizar:
 
-1 - instale dentro da pasta projetoHTML através do terminal: npm i
-2 - Após instalar os recursos, dentro da pasta(projetoHTML) execute o seguinte comando: npm start
-3 - Será aberto um servidor através da porta 8080: http://localhost:8080 , basta colar no navegador.
+<ul>
+  <li>1 - instale dentro da pasta projetoHTML através do terminal: npm i </li>
+  <li>2 - Após instalar os recursos, dentro da pasta(projetoHTML) execute o seguinte comando: npm start</li>
+  <li>3 - Será aberto um servidor através da porta 8080: http://localhost:8080 , basta colar no navegador.</li>
+  <li>OBS: No método upload, os arquivos baixados, serão salvos na pasta upload, localizada dentro da parta central(projetoHTML)</li>
+</ul>
+<li></br>
 
-OBS: No método upload, os arquivos baixados, serão salvos na pasta upload, localizada dentro da parta central(projetoHTML)
+
+
+
