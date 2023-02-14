@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilo.css">
+    <title>Upload</title>
+</head>
+<body>
+    <div class="conteudo">
+        <div class="menu">
+            <h1>Metodo UPLOAD</h1>
+            <label for="botao" id="caminhoDoArquivo">Insira o arquivo</label>
+            <input type="file" name="arquivo" id="botao"/>
+        </div>
+        <div class="menu">
+            <li>Arquivo:</li>
+            <div class="barra">
+                <div class="progresso">0%</div>
+            </div>
+        </div>
+        
+        <section class="conteudo">
+            <span class="menu">
+                <a href="index.html">Voltar</a>
+            </span> 
+        </section>
+    </div>
+
+    <script>
+        const file = document.getElementById('botao')
+        const menu = document.querySelector('.menu li')
+
+        file.addEventListener('change', function(e){
+            menu.innerHTML = e.target.files[0].name
+        })
+
+        function ajaxUp(config) {
+            const xhr = new XMLHttpRequest()
+    
+            if (xhr.upload) {
+                xhr.upload.onprogress = e => {
+                    const total = e.total
+                    const atual = e.loaded
+                    const percentual = Math.floor(atual / total * 100)
+                    config.progress(percentual)
+                }
+            }
+            
+            xhr.open(config.metodo, config.url, true)
+            xhr.send(config.formData) 
+        }
+
+        document.querySelector('input[type=file]').onchange = e => {
+            const formData = new FormData()
+            const inputFile = e.target
+            formData.append(inputFile.name, inputFile.files[0])
+
+            ajaxUp({
+                metodo: "post",
+                url: 'upload',
+                formData: formData,
+                progress(dados) {
+                    const evento = document.querySelector('.progresso')
+                    evento.style.width = `${dados}%`
+                    evento.innerHTML = `${dados}%`
+                }
+            })
+        }   
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estados XML</title>
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+<body>
+    <div class = "conteudo">
+        <div class="menu">
+            <h1>Estados XML</h1>
+        </div>
+    </div>
+    <section class="conteudo">
+        <span class="menu">
+            <a href="index.html">Voltar</a>
+        </span> 
+    </section>
+    <script>
+        function ajaxXml(config) {
+            const xhr = new XMLHttpRequest()
+            xhr.open(config.metodo, config.url, true)
+
+            xhr.onreadystatechange = e => {
+                if (xhr.readyState === 4){
+                    if (xhr.status == 200) {
+                        config.sucesso(xhr.responseXML)
+                    } else if (xhr.status >= 400){
+                        config.erro({
+                            code: xhr.status,
+                            texto: xhr.statusText
+                        })
+                    }
+                }
+            }
+
+            xhr.send()
+        }
+
+        function conversor(estados) {
+            const linhas = estados.getElementsByTagName('estado')
+            const evento = document.querySelector('.menu')
+            
+            const estadosAll = Array.from(linhas).reduce(
+                (html, estado) => html + `<li>${estado.attributes.id.value}</li><li>${estado.attributes.nome.value}</li>
+                    <li>${estado.attributes.sigla.value}</li>`, '' 
+            )
+            
+            const ul = document.createElement('ul')
+
+
+            ul.innerHTML = estadosAll
+            evento.appendChild(ul)
+        }
+
+        ajaxXml({
+            metodo: "get",
+            url: "./arquivos/estados.xml",
+            sucesso(dados){
+                conversor(dados)
+            },
+            erro(e){
+                const evento = document.querySelector('.menu')
+                const msg = document.createTextNode(`${e.code}:${e.texto}`)
+                evento.appendChild(msg)
+            }
+        })
+    </script>
+
+    
+</body>
+</html>

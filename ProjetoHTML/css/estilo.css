@@ -1,0 +1,113 @@
+@font-face {
+    font-family: 'Font';
+    src: url('../fonts/Oswald-Regular.ttf') format('truetype');
+}
+
+* {
+    font-family: 'Font';
+}
+
+body{
+    background-image: url('../images/planoDeFundo.png');
+    background-repeat: no-repeat;
+}
+h1 {
+    text-align: center;
+    font-size: 2.0em;
+    background-color: #333;
+    margin: 0;
+    padding: 5px;
+    width: 100%;
+    color: #fff;
+    border-bottom: solid 3px lightskyblue ;
+}
+ul {
+    padding: 0;
+    text-align: center;
+    width: 280px;
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+li {
+    list-style-type: none;
+    padding: 0;
+}
+.conteudo {
+    align-items: center;
+    display: flex; 
+    flex-direction: column;
+}
+.menu {
+    background-color: lightgray;
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    box-shadow: -5px 5px 5px #333;
+}
+a {
+    font-size: 1.4em;
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    border-radius: 5px;
+    background-color: lightskyblue;
+    transition: 2s;
+}
+
+.estados {
+    width: 140px;
+    text-align: center;
+    padding: 5px;
+}
+
+.upload {
+    text-align: center;
+    padding: 5px;
+    width: 135px;
+}
+
+section .menu {
+    background-color: #333;
+}
+
+span a {
+    padding: 0 126px;
+    color: #fff;
+}
+
+input {
+    padding: 10px 0;
+    color: #fff;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label {
+    padding: 5px 5px;
+}
+
+label:hover {
+    background-color: lightskyblue;
+    transition: 2s;
+}
+
+.progresso {
+    height: 24px;
+    width: 0%;
+    text-align: right;
+    padding-right: 4px;
+    background-color: rgb(168, 0, 0);
+}
+
+.barra {
+    background-color: lightgray;
+    width: 278px;
+    display: flex;
+    border: solid 2px #333;
+}

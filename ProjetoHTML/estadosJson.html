@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estados JSON</title>
+    <link rel="stylesheet" href="./css/estilo.css">
+</head>
+<body>
+    <div class="conteudo">
+        <div class="menu">
+            <h1>Estados</h1>
+        </div>
+        <section class="conteudo">
+            <span class="menu">
+                <a href="index.html">Voltar</a>
+            </span> 
+        </section>
+    </div>
+    <script>
+        function ajaxJson(config) {
+            const xhr = new XMLHttpRequest()
+            xhr.open(config.metodo, config.url, true)
+            xhr.onload = e => {
+                if (xhr.status === 200) {
+                    config.sucesso(xhr.response)
+                } else if (xhr.status >= 400) {
+                    config.erro({
+                        code: xhr.status,
+                        text: xhr.statusText
+                    })
+                }
+            }
+            xhr.send()
+        }
+
+        function conversor(estados) {
+            const evento = document.querySelector('div .menu')
+            const linhas = estados.map(linha => {
+                const tdID = document.createElement('td')
+                tdID.innerHTML = linha.id
+                const tdNome = document.createElement('td')
+                tdNome.innerHTML = linha.nome
+                const tdSigla = document.createElement('td')
+                tdSigla.innerHTML = linha.sigla
+
+                const tr = document.createElement('tr')
+                tr.appendChild(tdID)
+                tr.appendChild(tdNome)
+                tr.appendChild(tdSigla)
+
+                return tr
+            })
+
+            const table = document.createElement('table')
+            linhas.forEach((linha) => {
+                table.appendChild(linha)
+            })
+
+            evento.appendChild(table)
+
+        }
+
+        ajaxJson({
+            metodo: 'get',
+            url: './arquivos/estados.json',
+            sucesso(dados) {
+                const estados = JSON.parse(dados)
+                conversor(estados)
+
+            },
+            erro(e) {
+                const msg = document.createTextNode(`${e.code}:${e.text}`)
+            }
+        })
+    </script>
+</body>
+</html>
