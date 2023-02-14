@@ -9,7 +9,6 @@ Passos para utilizar:
   <li>3 - Será aberto um servidor através da porta 8080: http://localhost:8080 , basta colar no navegador.</li>
   <li>OBS: No método upload, os arquivos baixados, serão salvos na pasta upload, localizada dentro da parta central(projetoHTML)</li>
 </ul>
-<li></br>
 
 
 
